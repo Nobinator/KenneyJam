@@ -5,10 +5,13 @@ using UnityEngine;
 
 public class Shooting : MonoBehaviour{
 
+	public GameObject bulletPrefab;
+
 	public float rotationSpeed = 2f;
 	public float upAngleLimit = 45f;
 	public float downAngleLimit = 1f;
 	public Transform gunRoot;
+	public float bulletSpeed = 1f;
 	
 	
 	void Update () {
@@ -19,7 +22,7 @@ public class Shooting : MonoBehaviour{
 			Rotate(-1);
 		}
 
-		if (!Reloading() && Input.GetKeyDown(KeyCode.X)){
+		if (/*!Reloading() &&*/ Input.GetKeyDown(KeyCode.X)){
 			Shoot();
 		}
 	}
@@ -58,6 +61,9 @@ public class Shooting : MonoBehaviour{
 
 	void Shoot(){
 		Debug.Log("Shot!");
+
+		var b = Instantiate(bulletPrefab, gunRoot.position, gunRoot.rotation, null);
+		b.GetComponent<Bullet>().Shot(bulletSpeed);
 		reloading = reloadingTime;
 	}
 }
