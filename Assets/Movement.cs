@@ -5,7 +5,6 @@ using UnityEngine;
 public class Movement : MonoBehaviour{
 	private Rigidbody2D rig;
 	public float multi = 2.8f;
-	public Transform gun;
 	
 	// Use this for initialization
 	void Start (){
@@ -21,12 +20,6 @@ public class Movement : MonoBehaviour{
 		}
 		if (Input.GetKey(KeyCode.C)){
 			Move(1);
-		}
-		if (Input.GetKey(KeyCode.UpArrow)){
-			// gun up
-		}
-		if (Input.GetKey(KeyCode.DownArrow)){
-			// gun down
 		}
 	}
 
