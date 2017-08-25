@@ -8,15 +8,19 @@ public class Shooting : MonoBehaviour{
 	public float rotationSpeed = 2f;
 	public float upAngleLimit = 45f;
 	public float downAngleLimit = 1f;
-	
 	public Transform gunRoot;
-	// Update is called once per frame
+	
+	
 	void Update () {
 		if (Input.GetKey(KeyCode.UpArrow)){
 			Rotate(1);
 		}
 		if (Input.GetKey(KeyCode.DownArrow)){
 			Rotate(-1);
+		}
+
+		if (!Reloading() && Input.GetKeyDown(KeyCode.X)){
+			Shoot();
 		}
 	}
 
@@ -41,7 +45,19 @@ public class Shooting : MonoBehaviour{
 		}
 		
 		gunRoot.Rotate(Vector3.forward,sign * rotationSpeed);
-		
-		
+	}
+
+	private const float reloadingTime = 2f;
+	public float reloading = reloadingTime;
+
+	bool Reloading(){
+		if (reloading <= 0) return false;
+		reloading -= Time.deltaTime;
+		return true;
+	}
+
+	void Shoot(){
+		Debug.Log("Shot!");
+		reloading = reloadingTime;
 	}
 }
