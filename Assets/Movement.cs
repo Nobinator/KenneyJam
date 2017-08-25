@@ -23,15 +23,20 @@ public class Movement : MonoBehaviour{
 		}
 	}
 
+	private bool IsStay;
+
 	void Move(int sign){
+		if(IsStay)
 		rig.velocity = sign * transform.right * multi;
 	}
 
-//	private void OnCollisionStay2D(Collision2D other){
-//		Debug.Log("Stay");
-//		//if(rig.drag!=dragLock)
-//		//rig.drag = dragLock;
-//	}
+	private void OnCollisionStay2D(Collision2D other){
+		IsStay = true;
+	}
+
+	private void OnCollisionExit2D(Collision2D other){
+		IsStay = false;
+	}
 }
 
 
