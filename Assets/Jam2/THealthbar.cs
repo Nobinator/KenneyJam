@@ -17,6 +17,7 @@ public class THealthbar : MonoBehaviour{
 
 	// Update is called once per frame
 	void Update (){
+		if (target == null) return;
 		transform.position = target.position + Vector3.up;
 	}
 }

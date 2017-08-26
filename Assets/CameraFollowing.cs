@@ -48,8 +48,12 @@ public class CameraFollowing : MonoBehaviour{
 
 	// Update is called once per frame
 	void Update (){
+
+		if (target == null) return;
+		
 		var hw = Camera.main.orthographicSize * Camera.main.aspect;
 		var hh = Camera.main.orthographicSize;
+		
 		var x = target.position.x;
 		var y = target.position.y;
 
