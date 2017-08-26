@@ -7,8 +7,12 @@ public class TBullet : MonoBehaviour{
 	
 	private Rigidbody2D rig;
 	public float speed;
+	private Collider2D coll;
+
+	private int force = 1;
 	
 	public void Shot(float velo){
+		coll = GetComponent<Collider2D>();
 		rig = GetComponent<Rigidbody2D>();
 		rig.velocity = transform.up*velo;
 	}
@@ -35,12 +39,40 @@ public class TBullet : MonoBehaviour{
 		// При выходе из коллайдера стрелявшего
 		Debug.Log("Trigexit");
 		
-		GetComponent<Collider2D>().isTrigger = false;
+		coll.isTrigger = false;
 	}
 
-	private void OnCollisionExit2D(Collision2D other){
-		Debug.Log("collexit");
+//	private void OnCollisionExit2D(Collision2D other){
+//		Debug.Log("collexit");
+//	}
+
+	private void OnCollisionEnter2D(Collision2D other){
+		if (coll.isTrigger) return;
 		
-		//GetComponent<Collider2D>().isTrigger = false;
+		Debug.Log(other.gameObject.tag);
+
+		if (other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("Enemy")){
+			var t = other.gameObject.GetComponent<TTank>();
+			if (t.Damage(force)){
+				Debug.Log("Explosion");
+				Explosion();
+			}
+			else{
+				Debug.Log("Bounce");
+				Bounce();
+			}
+		}
+		else{
+			Bounce();
+		}
+	}
+
+	void Bounce(){
+		force++;
+	}
+
+
+	void Explosion(){
+		Destroy(this.gameObject);
 	}
 }
