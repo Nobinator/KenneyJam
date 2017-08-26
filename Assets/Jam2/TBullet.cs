@@ -73,6 +73,7 @@ public class TBullet : MonoBehaviour{
 
 
 	void Explosion(){
+		// play anim
 		Destroy(this.gameObject);
 	}
 }
