@@ -7,7 +7,6 @@ public class Bullet : MonoBehaviour {
 	private Rigidbody2D rig;
 
 	public int force;
-	
 
 	public void Shot(float velo){
 		rig = GetComponent<Rigidbody2D>();
