@@ -17,6 +17,27 @@ public class CameraFollowing : MonoBehaviour{
 	private void Start(){
 		hw = Camera.main.orthographicSize * Camera.main.aspect;
 		hh = Camera.main.orthographicSize;
+		
+		var x = target.position.x;
+		var y = target.position.y;
+
+		if (-left > x - hw){
+			vec.x = -left + hw;
+		}
+
+		if(x + hw > right){
+			vec.x = right-hw;
+		}
+
+		if (y + hh > up){
+			vec.y = up - hh;
+		}
+
+		if(y - hh < -down){
+			vec.y = -down + hh;
+		}
+		
+		
 	}
 
 	// Update is called once per frame
