@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class CameraFollowing : MonoBehaviour{
 
+	public PhysicsMaterial2D bounceMaterial;
+
 	public Transform target;
 	public float left;
 	public float right;
@@ -43,6 +45,7 @@ public class CameraFollowing : MonoBehaviour{
 			Vector3.right*right + Vector3.up * up, // right-up
 			Vector3.right*right + Vector3.down * down // right-down
 		};
+		e.sharedMaterial = bounceMaterial;
 
 	}
 
