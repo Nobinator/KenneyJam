@@ -14,7 +14,8 @@ public class TBullet : MonoBehaviour{
 	public void Shot(float velo){
 		coll = GetComponent<Collider2D>();
 		rig = GetComponent<Rigidbody2D>();
-		rig.velocity = transform.up*velo;
+		speed = velo;
+		rig.velocity = transform.up*speed;
 	}
 	
 	void Update () {
@@ -32,6 +33,7 @@ public class TBullet : MonoBehaviour{
 			rig.angularVelocity = 0;
 		}
 		oldvelo = rig.velocity;
+		rig.velocity = rig.velocity.normalized * speed;
 	}
 
 
