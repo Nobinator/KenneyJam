@@ -35,9 +35,9 @@ public class MapPaint : EditorWindow{
     private bool drag;
 
     private void OnSceneGUI(SceneView sceneView){
-        Tools.hidden = true;
         if (IsActive){
 
+            Tools.hidden = true;
             var old = mouse;
             mouse = SnapV(MousePosition());
             if (mouse != old){
@@ -60,6 +60,9 @@ public class MapPaint : EditorWindow{
             }
 
             HandleUtility.Repaint();
+        }
+        else{
+            Tools.hidden = false;
         }
     }
 
